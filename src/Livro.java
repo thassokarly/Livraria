@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Livro {
@@ -7,18 +8,21 @@ public class Livro {
     private double anoPublicacao;
     private String genero;
     private BigDecimal valorDeReserva;
+    private boolean disponivel;
+    private LocalDate dataReserva;
 
-    public Livro(String codigo, String autor, double anoPublicacao, String genero, BigDecimal valorDeReserva) {
+    public Livro(String codigo, String autor, double anoPublicacao, String genero, BigDecimal valorDeReserva, boolean disponivel, LocalDate dataReserva) {
         this.codigo = codigo;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
         this.genero = genero;
         this.valorDeReserva = valorDeReserva;
+        this.disponivel = disponivel;
+        this.dataReserva = dataReserva;
     }
 
     public Livro() {
     }
-
 
     @Override
     public String toString() {
@@ -28,20 +32,17 @@ public class Livro {
                 ", anoPublicacao=" + anoPublicacao +
                 ", genero='" + genero + '\'' +
                 ", valorDeReserva=" + valorDeReserva +
+                ", disponivel=" + disponivel +
+                ", dataReserva=" + dataReserva +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Livro livro = (Livro) o;
-        return Objects.equals(codigo, livro.codigo);
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(codigo);
+    public LocalDate getDataReserva() {
+        return dataReserva;
     }
 
     public String getCodigo() {
@@ -58,6 +59,34 @@ public class Livro {
 
     public String getGenero() {
         return genero;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setAnoPublicacao(double anoPublicacao) {
+        this.anoPublicacao = anoPublicacao;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setValorDeReserva(BigDecimal valorDeReserva) {
+        this.valorDeReserva = valorDeReserva;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public void setDataReserva(LocalDate dataReserva) {
+        this.dataReserva = dataReserva;
     }
 
     public BigDecimal getValorDeReserva() {

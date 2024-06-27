@@ -1,5 +1,6 @@
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -73,5 +74,26 @@ public class LivrariaTk {
             return null;
         }
         return Collections.min(livros, Comparator.comparing(Livro::getValorDeReserva));
+    }
+    public boolean reservarLivro(String codigo, BigDecimal valorPago) {
+        for (Livro livro : livros) {
+            if (livro.getCodigo().equals(codigo)) {
+                if (livro.isDisponivel()) {
+                    if (valorPago.compareTo(livro.getValorDeReserva()) >= 0) {
+                        livro.setDisponivel(false);
+                        livro.setDataReserva(LocalDate.now()); // Define a data de reserva
+                        return true;
+                    } else {
+                        System.out.println("Valor pago é insuficiente para reservar o livro.");
+                        return false;
+                    }
+                } else {
+                    System.out.println("Livro já está reservado.");
+                    return false;
+                }
+            }
+        }
+        System.out.println("Livro não encontrado.");
+        return false;
     }
 }
